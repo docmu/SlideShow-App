@@ -4,58 +4,45 @@ import 'h8k-components';
 
 import Slides from './components/Slides';
 const title = "Slideshow App";
-export default class App extends Component {
-    slides = [
-        {
-            title: "Today's workout plan",
-            text: "We're gonna do 3 fundamental exercises."
-        },
-        {
-            title: "First, 10 push-ups",
-            text: "Do 10 reps. Remember about full range of motion. Don't rush."
-        },
-        {
-            title: "Next, 20 squats",
-            text: "Squats are important. Remember to keep your back straight."
-        },
-        {
-            title: "Finally, 15 sit-ups",
-            text: "Slightly bend your knees. Remember about full range of motion."
-        },
-        {
-            title: "Great job!",
-            text: "You made it, have a nice day and see you next time!"
-        }
-    ];
-    constructor() {
-        super();
-        this.state = {
-            index: 0,
-        };
-    }
 
-    prevSlide = () => {
-        this.setState({ index: (this.state.index - 1) % this.slides.length });
-    };
+//App as functional component since it's stateless
+export default function App({ slides }) {
+    return (
+        <div>
+            <h8k-navbar header={title}></h8k-navbar>
+            <Slides slides={slides} />
+        </div>
+    );
 
-    nextSlide = () => {
-        this.setState({ index: (this.state.index + 1) % this.slides.length });
-    };
-
-    resetSlides = () => [this.setState({ index: 0 })];
-
-    render() {
-        return (
-            <div>
-                <Slides
-                    prevSlide={this.prevSlide}
-                    nextSlide={this.nextSlide}
-                    resetSlides={this.resetSlides}
-                    slides={this.slides}
-                    index={this.state.index}
-                />
-            </div>
-        );
-    }
 }
+
+//App as a class component bc it manages state; all the logic for slides lie here
+// export default class App extends Component {
+//     slides = this.props.slides;
+//     state = {
+//         index: 0,
+//     }
+//     prevSlide = () => {
+//         this.setState({ index: this.state.index - 1 });
+//     };
+//     nextSlide = () => {
+//         this.setState({ index: this.state.index + 1 });
+//     };
+//     resetSlides = () => this.setState({ index: 0 });
+//     render() {
+//         return (
+//             <div>
+//                 <h8k-navbar header={title}></h8k-navbar>
+//                 <Slides
+//                     prevSlide={this.prevSlide}
+//                     nextSlide={this.nextSlide}
+//                     resetSlides={this.resetSlides}
+//                     slides={this.slides}
+//                     index={this.state.index}
+//                 />
+//             </div>
+//         );
+//     }
+// }
+
 
