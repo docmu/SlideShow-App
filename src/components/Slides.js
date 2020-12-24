@@ -30,7 +30,7 @@ export default class Slides extends Component {
         return (
             <div>
                 <div id="navigation" className="text-center">
-                    <button onClick={this.resetSlides} data-testid="button-restart" className="small outlined">Restart</button>
+                    <button onClick={this.resetSlides} disabled={index === 0} data-testid="button-restart" className="small outlined">Restart</button>
                     <button onClick={this.prevSlide} disabled={index === 0} data-testid="button-prev" className="small">Prev</button>
                     <button onClick={this.nextSlide} disabled={index === this.slides.length - 1} data-testid="button-next" className="small">Next</button>
                 </div>
